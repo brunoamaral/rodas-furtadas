@@ -1,0 +1,9 @@
+asgiref==3.5.1
+Django==4.0.4
+django-common-helpers==0.9.2
+django-filter==21.1
+django4-cron==0.5.1
+djangorestframework==3.13.1
+psycopg2-binary==2.9.3
+pytz==2022.1
+sqlparse==0.4.2
