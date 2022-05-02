@@ -32,13 +32,13 @@ CSRF_TRUSTED_ORIGINS = ['https://furtadas.org']
 # Application definition
 
 INSTALLED_APPS = [
-
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+	'bicicletas'
 ]
 
 MIDDLEWARE = [
@@ -147,4 +147,5 @@ EMAIL_MAILGUN_API=os.environ.get('EMAIL_MAILGUN_API')
 EMAIL_DOMAIN=os.environ.get('EMAIL_DOMAIN')
 EMAIL_MAILGUN_API_URL=os.environ.get('EMAIL_MAILGUN_API_URL')
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
