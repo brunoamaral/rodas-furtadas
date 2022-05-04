@@ -24,11 +24,13 @@ from bicicletas import views
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
-    # The home page
-    path('', views.index, name='home'),
+		# The home page
+		path('', views.index, name='home'),
 
-    # Matches any html file
-    re_path(r'^.*\.*', views.pages, name='pages'),
+		# Matches any html file
+		re_path(r'^.*\.*', views.pages, name='pages'),
+		path('reportar/', views.reportar, name='reportar'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
