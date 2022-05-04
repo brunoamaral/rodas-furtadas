@@ -26,8 +26,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-ALLOWED_HOSTS = ['0.0.0.0','localhost','furtadas.org']
-CSRF_TRUSTED_ORIGINS = ['https://furtadas.org']
+ALLOWED_HOSTS = ['0.0.0.0','localhost','rodasfurtadas.com']
+CSRF_TRUSTED_ORIGINS = ['https://rodasfurtadas.com']
 
 # Application definition
 
