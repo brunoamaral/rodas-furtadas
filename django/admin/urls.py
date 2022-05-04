@@ -21,8 +21,8 @@ from bicicletas import views
 
 urlpatterns = [
 	path('admin/', admin.site.urls),
-		# The home page
-		# path('', views.index, name='home'),
-    path("bicicletas/", include("bicicletas.urls")),
+	# The home page
+	path('', views.index, name='home'),
+	path("bicicletas/", include("bicicletas.urls")),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

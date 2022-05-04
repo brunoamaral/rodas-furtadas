@@ -6,9 +6,8 @@ from bicicletas import views
 
 urlpatterns = [
 		# Matches any html file
-		re_path(r'^.*\.*', views.pages, name='pages'),
+
 		path('reportar/', views.reportar, name='reportar'),
+		re_path(r'^.*\.*', views.pages, name='pages'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-

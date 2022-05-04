@@ -1,6 +1,6 @@
 from django import forms
 
-class ReportarBicicleta(forms.Form):
+class BicicletaForm(forms.Form):
 		marca = forms.CharField(max_length=100  )
 		modelo = forms.CharField(max_length=100  )
 		nro_serie = forms.CharField(max_length=100 )

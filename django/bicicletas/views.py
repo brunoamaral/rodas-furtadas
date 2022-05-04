@@ -8,17 +8,15 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from .models import Bicicleta
+from .forms import BicicletaForm
 
 
-@login_required(login_url="/login/")
 def index(request):
     context = {'segment': 'index'}
 
     html_template = loader.get_template('bicicletas/home/index.html')
     return HttpResponse(html_template.render(context, request))
 
-
-@login_required(login_url="/login/")
 def pages(request):
     context = {}
     # All resource paths end in .html.
@@ -31,7 +29,7 @@ def pages(request):
             return HttpResponseRedirect(reverse('admin:index'))
         context['segment'] = load_template
 
-        html_template = loader.get_template('bicicletas/home/' + load_template)
+        html_template = loader.get_template('home/' + load_template)
         return HttpResponse(html_template.render(context, request))
 
     except template.TemplateDoesNotExist:
@@ -67,6 +65,5 @@ def reportar(request):
 
 	# if a GET (or any other method) we'll create a blank form
 	else:
-	    form = BicicletaForm()
-
-	return render(request, 'stubs/submit_concert.html', {'form': form})
+		form = ''
+	return render(request, 'bicicletas/home/index.html', {'form': form})
