@@ -45,7 +45,6 @@ def reportar(request):
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
 		form = BicicletaForm(request.POST, request.FILES)
-
 		# check whether it's valid:
 		if form.is_valid():
 			marca = form.cleaned_data['marca']
@@ -62,9 +61,9 @@ def reportar(request):
 				foto=foto,
 				processo_crime=processo_crime
 			)
-			bicicleta.save()
+			bicicleta = bicicleta.save()
 
-			return HttpResponseRedirect('/thanks/')
+			return HttpResponseRedirect('/home/thanks/')
 
 	# if a GET (or any other method) we'll create a blank form
 	else:

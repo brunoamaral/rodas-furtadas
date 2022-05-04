@@ -1,4 +1,7 @@
+from django.core.files import storage
 from django.db import models
+from django.core.files.storage import FileSystemStorage
+fs = FileSystemStorage(location='/media/fotos')
 
 # Create your models here.
 class Bicicleta(models.Model):
@@ -6,24 +9,13 @@ class Bicicleta(models.Model):
 	marca = models.CharField(max_length=280, blank=True, null=True)
 	modelo = models.CharField(max_length=280, blank=True, null=True)
 	nro_serie = models.CharField(max_length=280, blank=True, null=True, unique=True)
-	foto = models.ForeignKey('Fotos', models.CASCADE, db_column='foto', blank=True, null=True)
-	processo_crime = models.ForeignKey('Documentos', models.CASCADE, db_column='processo_crime', blank=True, null=True)
+	foto = models.ImageField(storage=fs,
+	blank=False, null=False
+	)
+	processo_crime = models.FileField(storage=fs,
+	blank=False, null=False
+	)
 	email = models.EmailField(max_length=280, unique=False, null=False,blank=False)
 
-
-class Documentos(models.Model):
-	documento = models.FileField(upload_to='documents/')
-	data = models.DateTimeField(auto_now_add=True)
-	class Meta:
-		managed = True
-		verbose_name_plural = 'Documentos'
-
-
-class Fotos(models.Model):
-	foto = models.FileField(upload_to='documents/')
-	data = models.DateTimeField(auto_now_add=True)
-	class Meta:
-		managed = True
-		verbose_name_plural = 'Fotos'
 
 
