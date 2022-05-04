@@ -52,8 +52,8 @@ def reportar(request):
 			modelo = form.cleaned_data['modelo']
 			nro_serie = form.cleaned_data['nro_serie']
 			email = form.cleaned_data['email']
-			foto = form.cleaned_data['foto']
-			processo_crime = form.cleaned_data['processo_crime']
+			foto = request.FILES['foto']
+			processo_crime = request.FILES['comprovativo']
 			bicicleta = Bicicleta.objects.create(
 				marca = marca,
 				modelo = modelo,
