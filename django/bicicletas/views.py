@@ -44,20 +44,23 @@ def pages(request):
 def reportar(request):
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
-		form = BicicletaForm(request.POST)
+		form = BicicletaForm(request.POST, request.FILES)
+
 		# check whether it's valid:
 		if form.is_valid():
 			marca = form.cleaned_data['marca']
 			modelo = form.cleaned_data['modelo']
 			nro_serie = form.cleaned_data['nro_serie']
 			email = form.cleaned_data['email']
-			# foto = form.cleaned_data['foto']
-			# processo_crime = form.cleaned_data['processo_crime']
+			foto = form.cleaned_data['foto']
+			processo_crime = form.cleaned_data['processo_crime']
 			bicicleta = Bicicleta.objects.create(
 				marca = marca,
 				modelo = modelo,
 				nro_serie = nro_serie,
-				email = email
+				email = email,
+				foto=foto,
+				processo_crime=processo_crime
 			)
 			bicicleta.save()
 
