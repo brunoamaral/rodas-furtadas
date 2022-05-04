@@ -19,21 +19,10 @@ from django.conf.urls.static import static
 from django.urls import include, path, re_path
 from bicicletas import views
 
-
-
-
 urlpatterns = [
 	path('admin/', admin.site.urls),
 		# The home page
-		path('', views.index, name='home'),
-
-		# Matches any html file
-		re_path(r'^.*\.*', views.pages, name='pages'),
-		path('reportar/', views.reportar, name='reportar'),
+		# path('', views.index, name='home'),
+    path("bicicletas/", include("bicicletas.urls")),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
-
-
-

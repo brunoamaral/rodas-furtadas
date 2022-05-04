@@ -7,6 +7,8 @@ from django.template import loader
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
+from .models import Bicicleta
+
 
 @login_required(login_url="/login/")
 def index(request):
@@ -37,9 +39,34 @@ def pages(request):
         html_template = loader.get_template('bicicletas/home/page-404.html')
         return HttpResponse(html_template.render(context, request))
 
-    except:
-        html_template = loader.get_template('bicicletas/home/page-500.html')
-        return HttpResponse(html_template.render(context, request))
+    # except:
+    #     html_template = loader.get_template('bicicletas/home/page-500.html')
+    #     return HttpResponse(html_template.render(context, request))
 
 def reportar(request):
-    return
+	if request.method == 'POST':
+		# create a form instance and populate it with data from the request:
+		form = BicicletaForm(request.POST)
+		# check whether it's valid:
+		if form.is_valid():
+			marca = form.cleaned_data['marca']
+			modelo = form.cleaned_data['modelo']
+			nro_serie = form.cleaned_data['nro_serie']
+			email = form.cleaned_data['email']
+			# foto = form.cleaned_data['foto']
+			# processo_crime = form.cleaned_data['processo_crime']
+			bicicleta = Bicicleta.objects.create(
+				marca = marca,
+				modelo = modelo,
+				nro_serie = nro_serie,
+				email = email
+			)
+			bicicleta.save()
+
+			return HttpResponseRedirect('/thanks/')
+
+	# if a GET (or any other method) we'll create a blank form
+	else:
+	    form = BicicletaForm()
+
+	return render(request, 'stubs/submit_concert.html', {'form': form})
