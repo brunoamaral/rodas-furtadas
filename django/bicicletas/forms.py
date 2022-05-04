@@ -10,12 +10,18 @@ class BicicletaForm(ModelForm):
 		# foto = forms.ImageField()
 		# processo_crime = forms.FileField()
 		# email = forms.EmailField(max_length=100)
+
 	class Meta:
 		model = Bicicleta
-		fields = ['marca','modelo','nro_serie',
-		# 'foto',
-		'processo_crime',
-		'email',]
+		fields = [
+		'marca',
+		'modelo',
+		'nro_serie',
+		'foto',
+		'comprovativo',
+		'email',
+		]
+		exclude = ('valid',)
 
 
 

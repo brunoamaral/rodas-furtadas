@@ -4,8 +4,10 @@ from django.conf.urls.static import static
 from django.urls import include, path, re_path
 from bicicletas import views
 
+app_name = 'bicicletas'
 urlpatterns = [
 		path('reportar/', views.reportar, name='reportar'),
+		path('obrigado/', views.obrigado, name='obrigado'),
 		# Matches any html file
 		re_path(r'^.*\.*', views.pages, name='pages'),
 ] 

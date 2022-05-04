@@ -38,7 +38,7 @@
 </head>
 <body class="presentation-page bg-gray-200">
 
-  {% include 'bicicletas/includes/navigation.html' %}
+  {% comment %} {% include 'bicicletas/includes/navigation.html' %} {% endcomment %}
 
   <header class="header-2">
     <div class="page-header min-vh-50 relative" style="background-image: url('/static/assets/img/bgbike.jpg')">
@@ -74,14 +74,21 @@
                   <div class="row">
                     <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
                       <h3 class="text-center">Reportar bicicleta roubada</h3>
-                        
-                      <form role="form" id="reportar-form" action="{% url 'reportar' %}" method="post" autocomplete="off" enctype="multipart/form-data">
+
+                      <form role="form" id="reportar-form" action="{% url 'bicicletas:reportar' %}" method="post" autocomplete="off" enctype="multipart/form-data">
                         {% csrf_token %}
+                        {% if form.errors %}
+                        <div class="alert alert-danger text-white font-weight-bold" role="alert"><p>
+                          {{form.error_message}}Por favor verifica estes campos:
+                          {% for error in form.errors  %} <strong>{{ error}},</strong>{% endfor %}</p>
+
+                        </div>
+                        {% endif %}
+
+
                         <div class="card-body">
                           <div class="row">
                             <div class="col-md-6">
-                              {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
                               <div class="input-group input-group-dynamic mb-4">
                                 <label class="form-label">Marca</label>
                                 <input class="form-control" aria-label="Marca da bicicleta" type="text" name="marca">

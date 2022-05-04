@@ -12,10 +12,11 @@ class Bicicleta(models.Model):
 	foto = models.ImageField(storage=fs,
 	blank=False, null=False
 	)
-	processo_crime = models.FileField(storage=fs,
+	comprovativo = models.FileField(storage=fs,
 	blank=False, null=False
 	)
 	email = models.EmailField(max_length=280, unique=False, null=False,blank=False)
+	valid = models.BooleanField(default=False, blank=False,null=False)
 
 
 

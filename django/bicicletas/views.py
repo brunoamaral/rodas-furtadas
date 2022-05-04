@@ -12,34 +12,35 @@ from .forms import BicicletaForm
 
 
 def index(request):
-    context = {'segment': 'index'}
+		form = BicicletaForm()
+		context = {'segment': 'index', 'form': form}
+		html_template = loader.get_template('bicicletas/home/index.html')
 
-    html_template = loader.get_template('bicicletas/home/index.html')
-    return HttpResponse(html_template.render(context, request))
+		return HttpResponse(html_template.render(context, request))
 
 def pages(request):
-    context = {}
-    # All resource paths end in .html.
-    # Pick out the html file name from the url. And load that template.
-    try:
+		context = {}
+		# All resource paths end in .html.
+		# Pick out the html file name from the url. And load that template.
+		try:
 
-        load_template = request.path.split('/')[-1]
+				load_template = request.path.split('/')[-1]
 
-        if load_template == 'admin':
-            return HttpResponseRedirect(reverse('admin:index'))
-        context['segment'] = load_template
+				if load_template == 'admin':
+						return HttpResponseRedirect(reverse('admin:index'))
+				context['segment'] = load_template
 
-        html_template = loader.get_template('home/' + load_template)
-        return HttpResponse(html_template.render(context, request))
+				html_template = loader.get_template('home/' + load_template)
+				return HttpResponse(html_template.render(context, request))
 
-    except template.TemplateDoesNotExist:
+		except template.TemplateDoesNotExist:
 
-        html_template = loader.get_template('bicicletas/home/page-404.html')
-        return HttpResponse(html_template.render(context, request))
+				html_template = loader.get_template('bicicletas/home/page-404.html')
+				return HttpResponse(html_template.render(context, request))
 
-    # except:
-    #     html_template = loader.get_template('bicicletas/home/page-500.html')
-    #     return HttpResponse(html_template.render(context, request))
+		# except:
+		#     html_template = loader.get_template('bicicletas/home/page-500.html')
+		#     return HttpResponse(html_template.render(context, request))
 
 def reportar(request):
 	if request.method == 'POST':
@@ -52,20 +53,25 @@ def reportar(request):
 			nro_serie = form.cleaned_data['nro_serie']
 			email = form.cleaned_data['email']
 			foto = request.FILES['foto']
-			processo_crime = request.FILES['comprovativo']
+			comprovativo = request.FILES['comprovativo']
 			bicicleta = Bicicleta.objects.create(
 				marca = marca,
 				modelo = modelo,
 				nro_serie = nro_serie,
 				email = email,
 				foto=foto,
-				processo_crime=processo_crime
+				comprovativo=comprovativo
 			)
 			bicicleta = bicicleta.save()
 
-			return HttpResponseRedirect('/home/thanks/')
+			return HttpResponseRedirect(reverse('bicicletas:obrigado'))
 
 	# if a GET (or any other method) we'll create a blank form
 	else:
-		form = ''
+		form = BicicletaForm()
 	return render(request, 'bicicletas/home/index.html', {'form': form})
+
+def obrigado(request):
+	html_template = loader.get_template('bicicletas/home/thanks.html')
+	context = {"message":"YES"}
+	return HttpResponse(html_template.render(context, request))
