@@ -148,4 +148,4 @@ EMAIL_DOMAIN=os.environ.get('EMAIL_DOMAIN')
 EMAIL_MAILGUN_API_URL=os.environ.get('EMAIL_MAILGUN_API_URL')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/media'

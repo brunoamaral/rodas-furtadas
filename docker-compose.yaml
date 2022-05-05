@@ -32,6 +32,7 @@ services:
     # command: gunicorn -b 0.0.0.0:8000 admin.wsgi
     volumes:
       - ./django:/code
+      - ./media:/media
 
     ports:
       - "8000:8000"

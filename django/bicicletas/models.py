@@ -3,7 +3,7 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ValidationError
 
-fs = FileSystemStorage(location='/media/fotos')
+fs = FileSystemStorage(location='/media/')
 
 def file_size(value): # add this to some file where you can import it from
 	limit = 1 * 1024 * 1024
