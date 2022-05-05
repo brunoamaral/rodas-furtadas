@@ -17,8 +17,8 @@ def index(request):
 
 	if request.method == 'POST':
 		id = request.POST['id']
-		if Bicicleta.objects.filter(nro_serie=id).exists():
-			bicicleta = Bicicleta.objects.filter(nro_serie=id)
+		if Bicicleta.objects.filter(nro_serie__iexact=id).exists():
+			bicicleta = Bicicleta.objects.filter(nro_serie__iexact=id)
 	form = BicicletaForm()
 	context = {'segment': 'index', 'form': form, "id":id, "bicicleta":bicicleta}
 	html_template = loader.get_template('bicicletas/home/index.html')
