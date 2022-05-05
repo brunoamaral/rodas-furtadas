@@ -10,9 +10,7 @@ urlpatterns = [
 		path('obrigado/', views.obrigado, name='obrigado'),
 		# Matches any html file
 		re_path(r'^.*\.*', views.pages, name='pages'),
-] 
-
-# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
