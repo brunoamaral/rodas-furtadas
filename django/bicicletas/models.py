@@ -2,6 +2,7 @@ from django.core.files import storage
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 
 fs = FileSystemStorage(location='/media/')
 
@@ -19,11 +20,11 @@ class Bicicleta(models.Model):
 	nro_serie = models.CharField(max_length=280, blank=True, null=True, unique=True)
 	foto = models.ImageField(storage=fs,
 	blank=False, null=False,
-	validators=[file_size]
+	validators=[file_size,FileExtensionValidator(['jpg','jpeg'])]
 	)
 	comprovativo = models.FileField(storage=fs,
 	blank=False, null=False,
-	validators=[file_size]
+	validators=[file_size,FileExtensionValidator(['pdf','jpeg','jpg'])]
 	)
 	email = models.EmailField(max_length=280, unique=False, null=False,blank=False)
 	valid = models.BooleanField(default=False, blank=False,null=False)
