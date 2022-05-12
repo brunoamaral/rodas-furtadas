@@ -14,6 +14,8 @@ def file_size(value): # add this to some file where you can import it from
 
 # Create your models here.
 class Bicicleta(models.Model):
+	RAZOES = [('pertence-me e foi roubada', 'Pertence-me e foi roubada'),('não me pertence, encontrei-a','Não me pertence, encontrei-a')]
+
 	id = models.AutoField(primary_key=True)
 	marca = models.CharField(max_length=280, blank=True, null=True)
 	modelo = models.CharField(max_length=280, blank=True, null=True)
@@ -28,8 +30,4 @@ class Bicicleta(models.Model):
 	)
 	email = models.EmailField(max_length=280, unique=False, null=False,blank=False)
 	valid = models.BooleanField(default=False, blank=False,null=False)
-
-
-
-
-
+	razao_registo = models.CharField(choices=RAZOES, max_length=50, default=RAZOES[0][0])

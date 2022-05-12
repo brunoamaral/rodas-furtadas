@@ -20,6 +20,7 @@ class BicicletaForm(ModelForm):
 		'foto',
 		'comprovativo',
 		'email',
+		'razao_registo'
 		]
 		exclude = ('valid',)
 

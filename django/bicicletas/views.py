@@ -61,14 +61,17 @@ def reportar(request):
 			email = form.cleaned_data['email']
 			foto = request.FILES['foto']
 			comprovativo = request.FILES['comprovativo']
+			razao_registo = form.cleaned_data['razao_registo']
 			bicicleta = Bicicleta.objects.create(
 				marca = marca,
 				modelo = modelo,
 				nro_serie = nro_serie,
 				email = email,
 				foto=foto,
+				razao_registo = razao_registo,
 				comprovativo=comprovativo
 			)
+
 			bicicleta = bicicleta.save()
 
 			return HttpResponseRedirect(reverse('bicicletas:obrigado'))
