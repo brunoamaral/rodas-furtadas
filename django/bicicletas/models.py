@@ -25,7 +25,7 @@ class Bicicleta(models.Model):
 	validators=[file_size,FileExtensionValidator(['jpg','jpeg'])]
 	)
 	comprovativo = models.FileField(storage=fs,
-	blank=False, null=False,
+	blank=True, null=True,
 	validators=[file_size,FileExtensionValidator(['pdf','jpeg','jpg'])]
 	)
 	email = models.EmailField(max_length=280, unique=False, null=False,blank=False)
