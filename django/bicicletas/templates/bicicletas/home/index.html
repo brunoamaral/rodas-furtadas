@@ -69,11 +69,11 @@
   
           <div class="row justify-space-between py-2">
             <div class="col-lg-4 mx-auto">
-              <form method="post" action="">
+              <form method="post" action="" id="searchform">
                 {% csrf_token %}
                 <div class="input-group input-group-outline mb-4 text-white">
                   <label class="form-label text-white">Nr. de série</label>
-                  <input class="form-control text-white umami--submit--search-serial-number" type="text" name="id" >
+                  <input class="form-control text-white" type="text" name="id" >
                 </div>  
               </form>
 
@@ -364,6 +364,13 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
   <script src="/static/assets/js/material-kit.min.js?v=3.0.0" type="text/javascript"></script>
   <script async defer data-website-id="f0cf196e-5289-4aa8-b494-7499cbf17f88" src="https://nash.rodasfurtadas.com/umami.js"></script>
+  <script async defer type="text/javascript">
+    function logSubmit(event) {
+      umami('serial number search');
+    }
+    const searchform = document.getElementById('searchform');
+    searchform.addEventListener('submit', logSubmit);
+  </script>
 </body>
 
 </html>
