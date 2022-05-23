@@ -1,3 +1,8 @@
+# Discussion and updates
+
+[Fórum Ciclismo](https://www.forumciclismo.net/index.php?threads/rodas-furtadas-o-registo-de-bicicletas-roubadas.21169/#post-444967)
+
+
 # Running with Docker
 
 ```bash
